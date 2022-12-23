@@ -6,17 +6,21 @@ export const Likebar = (props) => {
 
   const [isActive, setIsActive] = useState(false);
 
+  const [done, setDone] = useState(false);
+
   const handleClick = () => {
     // 👇️ toggle
     setIsActive((current) => !current);
   };
 
-  const recuento = props.indexPregunta.likes.length-props.indexPregunta.dislikes.length
+  const recuento =
+    props.indexPregunta.likes.length - props.indexPregunta.dislikes.length;
 
   return (
     <div class="card" style={{ width: "18rem" }}>
       <div class="card-body">
-        <>{recuento}
+        <>
+          {recuento}
           <h5 class="card-title">{props.indexPregunta.user}</h5>
           <p class="card-text">{props.indexPregunta.text}</p>
           <p class="card-text">{props.indexPregunta.category}</p>
@@ -93,6 +97,27 @@ export const Likebar = (props) => {
               </button>
             ) : null}
           </div>
+        ) : null}
+        {store.user.rol == 1 ? (
+          !done ? (
+            <button
+              onClick={() => {
+                actions.done(props.indexPregunta.id, true);
+                setDone(true);
+              }}
+            >
+              Hecho
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                actions.done(props.indexPregunta.id, false);
+                setDone(false);
+              }}
+            >
+              Deshacer
+            </button>
+          )
         ) : null}
       </div>
     </div>
