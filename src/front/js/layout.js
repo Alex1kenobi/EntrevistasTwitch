@@ -1,9 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-
 import injectContext from "./store/appContext";
-
 
 
 //create your first component
