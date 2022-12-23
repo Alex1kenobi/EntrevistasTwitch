@@ -24,6 +24,7 @@ export const InterviewerProfile = () => {
 
   useEffect(() => {
     actions.getEntrevistado(id);
+    actions.getcategories()
   }, []);
 
   const ordenLikes = store.preguntas_entrevistado.sort(function(a, b) {
@@ -39,9 +40,12 @@ export const InterviewerProfile = () => {
 
   const handleQuestion = async () => {
     await actions.preguntas(store.entrevistado.id, text, selectcategory);
-    setText("");
-    setSelectcategory("");
+    if (selectcategory && text) {
+      setText("");
+      setSelectcategory("");
+    }
     setMensaje(store.message_response);
+
 
   };
 
@@ -88,7 +92,7 @@ export const InterviewerProfile = () => {
                         >
                           <option selected disabled value="">
                             Selecciona una opción
-                          </option>
+                          </option> 
                           {store.categories.map((category) => {
                             return (
                               <>

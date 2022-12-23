@@ -333,13 +333,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
   
   
+		done: async (question_id, done) => {
+		  try {
+			// fetching data from the backend
+			const resp = await fetch(process.env.BACKEND_URL + "/api/done", {
+			  method: "PUT",
+			  headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + localStorage.getItem("token"),
+			  },
+			  body: JSON.stringify({
+				id : question_id,
+				done : done,
+			  }),
+			});
+			const data = await resp.json();
+  /*           setStore({
+			  user: data.user,
+			  message: data.message,
+			}); */
+			// don't forget to return something, that is how the async resolves
+		  } catch (error) {
+			console.log("Error loading message from backend", error);
+		  }
+		},
   
-  
-  
-  
-  
-  
-  
+		reject: async (question_id, done) => {
+		  try {
+			// fetching data from the backend
+			const resp = await fetch(process.env.BACKEND_URL + "/api/done", {
+			  method: "PUT",
+			  headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + localStorage.getItem("token"),
+			  },
+			  body: JSON.stringify({
+				id : question_id,
+				done : done,
+			  }),
+			});
+			const data = await resp.json();
+  /*           setStore({
+			  user: data.user,
+			  message: data.message,
+			}); */
+			// don't forget to return something, that is how the async resolves
+		  } catch (error) {
+			console.log("Error loading message from backend", error);
+		  }
+		},
   
   
 		logout: () => {
