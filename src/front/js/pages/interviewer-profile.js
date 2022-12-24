@@ -11,6 +11,9 @@ export const InterviewerProfile = () => {
   const [text, setText] = useState("");
 
   const [selectcategory, setSelectcategory] = useState("");
+  const [filtercategory, setFiltercategory] = useState("");
+
+
   const [mensaje, setMensaje] = useState("");
 
   const [isActive, setIsActive] = useState(false);
@@ -27,7 +30,11 @@ export const InterviewerProfile = () => {
     actions.getcategories()
   }, []);
 
-  const ordenLikes = store.preguntas_entrevistado.sort(function(a, b) {
+var ordenLikes 
+
+if (filtercategory == "") {
+
+  ordenLikes = store.preguntas_entrevistado.sort(function(a, b) {
     if ((a.likes.length-a.dislikes.length) < (b.likes.length-b.dislikes.length)) {
       return 1;
     }
@@ -37,6 +44,19 @@ export const InterviewerProfile = () => {
     return 0;
   });
   
+} else {
+  ordenLikes = store.filterCategory.sort(function(a, b) {
+    if ((a.likes.length-a.dislikes.length) < (b.likes.length-b.dislikes.length)) {
+      return 1;
+    }
+    if ((a.likes.length-a.dislikes.length) > (b.likes.length-b.dislikes.length)) {
+      return -1;
+    }
+    return 0;
+  });
+}
+
+ 
 
   const handleQuestion = async () => {
     await actions.preguntas(store.entrevistado.id, text, selectcategory,store.user.id);
@@ -74,7 +94,6 @@ export const InterviewerProfile = () => {
                     </div>
                   </div>
                 </div>
-
                 <div classname="needs-validation">
                   {store.logged ? (
                     <>
@@ -193,12 +212,45 @@ export const InterviewerProfile = () => {
                       </button>
                     </>
                   )}
+                  <div for="validationCustom04" class="form-label">
+                        <select
+                          class="form-select"
+                          aria-label="Floating label select example"
+                          id="validationCustom04"
+                          required
+                          value={filtercategory}
+                          onChange={(e) => {
+                            setFiltercategory(e.target.value);
+                          }}
+                          onClick={
+                            ()=>{
+                              actions.filterCategory(filtercategory)
+                            }
+                          }
+                        >
+                          <option selected value="">
+                            Ver todas las preguntas
+                          </option> 
+                          {store.categories.map((category) => {
+                            return (
+                              <>
+                                <option value={category.id}>
+                                  {category.name}
+                                </option>
+                              </>
+                            );
+                          })}
+                        </select>
+                        <label for="floatingSelect"></label>
+                      </div>
+
                   <div>
                     {ordenLikes.length > 0 ? (
                       ordenLikes.map((indexPregunta) => {
                         return (
                           <div className="card-group">
-                            <Likebar indexPregunta={indexPregunta} />
+                            <Likebar indexPregunta={indexPregunta}
+                             />
                           </div>
                         );
                       })
