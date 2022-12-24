@@ -39,13 +39,12 @@ export const InterviewerProfile = () => {
   
 
   const handleQuestion = async () => {
-    await actions.preguntas(store.entrevistado.id, text, selectcategory);
+    await actions.preguntas(store.entrevistado.id, text, selectcategory,store.user.id);
     if (selectcategory && text) {
       setText("");
       setSelectcategory("");
     }
     setMensaje(store.message_response);
-
 
   };
 

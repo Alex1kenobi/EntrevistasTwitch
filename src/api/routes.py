@@ -64,6 +64,7 @@ def register():
         user = User(email=body_email, password=body_password, username=body_username, rol_id=body_rol_id)
         if user:
             token = create_access_token(identity= user.id)
+            print (token, "!!!!!!!!!!!")
             db.session.add(user)
             db.session.commit()
             return jsonify({"logged": True, "user": user.serialize(), "token": token }), 200 # serialize es para pasar del lenguaje normal al lenguaje json """
@@ -90,11 +91,11 @@ def getEntrevistado(id):
 @api.route('/preguntas', methods=['POST'])
 @jwt_required()
 def preguntas():
-    user_id = get_jwt_identity ()
+    user_id = request.json.get("user_id")
     body_text = request.json.get("text")
     body_interviewer_id = request.json.get("interviewer_id")
     body_category_id = request.json.get("category_id")
-    if body_text and body_category_id:
+    if body_text and body_category_id and user_id: 
         question = Question (text=body_text, interviewer_id = body_interviewer_id, category_id = body_category_id, user_id = user_id)
         db.session.add(question)
         db.session.commit()

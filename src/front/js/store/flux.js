@@ -156,7 +156,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  }
 		},
   
-		preguntas: async (interviewer, text, selectcategory) => {
+		preguntas: async (interviewer, text, selectcategory, user_id) => {
 		  try {
 			// fetching data from the backend
 			const resp = await fetch(process.env.BACKEND_URL + "/api/preguntas", {
@@ -170,6 +170,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				interviewer_id: interviewer,
 				text: text,
 				category_id: selectcategory,
+				user_id: user_id,
 			  }),
 			});
 			const data = await resp.json();
