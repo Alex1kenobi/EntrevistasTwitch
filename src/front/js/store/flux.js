@@ -359,10 +359,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  }
 		},
   
-		reject: async (question_id, done) => {
+		reject: async (question_id, reject) => {
 		  try {
 			// fetching data from the backend
-			const resp = await fetch(process.env.BACKEND_URL + "/api/done", {
+			const resp = await fetch(process.env.BACKEND_URL + "/api/reject", {
 			  method: "PUT",
 			  headers: {
 				"Content-Type": "application/json",
@@ -370,7 +370,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  },
 			  body: JSON.stringify({
 				id : question_id,
-				done : done,
+				reject: reject,
 			  }),
 			});
 			const data = await resp.json();

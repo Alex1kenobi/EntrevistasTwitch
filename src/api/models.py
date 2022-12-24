@@ -65,6 +65,7 @@ class Question(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'),nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=True)
     done = db.Column(db.Boolean, nullable=False, default= False)
+    reject = db.Column(db.Boolean, nullable=False, default= False)
 
     def __repr__(self):
         return f'<Question {self.text}>'

@@ -8,6 +8,8 @@ export const Likebar = (props) => {
 
   const [done, setDone] = useState(false);
 
+  const [reject, setReject] = useState(false);
+
   const handleClick = () => {
     // 👇️ toggle
     setIsActive((current) => !current);
@@ -119,6 +121,29 @@ export const Likebar = (props) => {
             </button>
           )
         ) : null}
+
+{store.user.rol == 1 ? (
+!reject ? (
+            <button
+              onClick={() => {
+                actions.reject(props.indexPregunta.id, true);
+                setReject(true);
+              }}
+            >
+              Rechazar
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                actions.reject(props.indexPregunta.id, false);
+                setReject(false);
+              }}
+            >
+              Deshacer
+            </button>
+          )
+        ) : null}
+
       </div>
     </div>
   );
