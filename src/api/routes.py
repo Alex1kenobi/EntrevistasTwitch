@@ -244,7 +244,22 @@ def done():
     body_question_id = request.json.get("id") #pillar el ID del front
     question = Question.query.get (body_question_id) #esto me busca la pregunta en si
     body_done = request.json.get("done")
-    question.done = body_done
-    db.session.commit() 
-    return jsonify ({"message":"Cambios guardados", "Question": question.serialize()}), 200
-    
+    if question:
+        question.done = body_done
+        db.session.commit() 
+        return jsonify ({"message":"Pregunta aceptada", "Question": question.serialize()}), 200
+    else:
+        return jsonify ({"message":"Pregunta no encontrada", }), 400
+
+@api.route('/reject', methods=['PUT'])
+@jwt_required()
+def reject():
+    body_question_id = request.json.get("id") #pillar el ID del front
+    question = Question.query.get (body_question_id) #esto me busca la pregunta en si
+    body_reject = request.json.get("reject")
+    if question:
+        question.reject = body_reject
+        db.session.commit() 
+        return jsonify ({"message":"Pregunta rechazada", "Question": question.serialize()}), 200
+    else:
+        return jsonify ({"message":"Pregunta no encontrada", }), 400
