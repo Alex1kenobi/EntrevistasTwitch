@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		Liked: false,
 		Dislikes: false,
 		Troll: false,
+		filterCategory: [],
 	  },
 	  actions: {
 		login: async (user) => {
@@ -385,6 +386,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
   
   
+		filterCategory: async (category) => {
+			try {
+			  // fetching data from the backend
+			  const resp = await fetch(process.env.BACKEND_URL + "/api/filtercategory/"+ category,  {
+				method: "GET",
+				headers: {
+				  "Content-Type": "application/json",
+				  Authorization: "Bearer " + localStorage.getItem("token"),
+				},
+			  });
+			  const data = await resp.json();
+				setStore({
+				filterCategory: data.filterCategory
+			  });
+	
+			  // don't forget to return something, that is how the async resolves
+			} catch (error) {
+			  console.log("Error loading message from backend", error);
+			}
+		  },
+
+
+
+
+
+
 		logout: () => {
 		  localStorage.clear();
 		  setStore({

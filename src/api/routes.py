@@ -263,3 +263,12 @@ def reject():
         return jsonify ({"message":"Pregunta rechazada", "Question": question.serialize()}), 200
     else:
         return jsonify ({"message":"Pregunta no encontrada", }), 400
+
+
+
+@api.route('/filtercategory/<int:id>', methods=['GET'])
+@jwt_required()
+def filtercategory(id):
+    preguntas = Question.query.filter_by(category_id = id).all()
+    #return jsonify ({"Question": preguntas.serialize()}), 200
+    return jsonify ({"filterCategory": list(map(lambda x:x.serialize(), preguntas))}), 200
