@@ -41,7 +41,7 @@ export const Home = () => {
             <div className="homeSection">
               <div className="col-md-4 p-4">
                 <span className="d-inline-block px-4 py-3 my-4">
-                  <i class="fa-solid fa-user homeFirstSectionIcon"></i>
+                  <i className="fa-solid fa-user homeFirstSectionIcon"></i>
                 </span>
                 <h3>
                   Crea tu <span className="preguntasTitle">perfil</span>
@@ -87,7 +87,7 @@ export const Home = () => {
             <div className="homeSection flex-column">
               <h2 className="my-5">Próximas Entrevistas</h2>
 
-              <div className="col-md-5 mx-auto mb-3">
+              <div className="d-flex align-items-center justify-content-center mb-5 flex-wrap">
                 <Card />
               </div>
             </div>
