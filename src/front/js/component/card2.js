@@ -12,34 +12,38 @@ export const Card2 = () => {
 
   return (
     <>
-        {/* Card 1 */}
-        <div className="container">
-    <div className="d-flex justify-content-around flex-wrap">
-      {store.entrevistados.map((invitado) => {
-        return (
-    <div className="rotatingCard mx-2 my-4">
-    <div className="cardFace cardFront">
-      <img src={invitado.photo}></img>
-      <div className="cardFrontText">
-        <h3>{invitado.name}</h3>
-        <p className="mb-2">{invitado.position}</p>
-      </div>
-    </div>
-    <div className="cardFace cardBack">
-      <h3> {invitado.name}</h3>
-      <p>
-        {invitado.description}
-      </p>
-      <div className="cardLink">
-        <Link to={"/entrevistas/"+invitado.id+"/"+invitado.name}>Mas Info</Link>
-      </div>
-    </div>
-  </div>
-        );
+      {/* Card 1 */}
+      <div className="container">
+        <div className="d-flex justify-content-around flex-wrap">
+          {store.entrevistados.map((invitado) => {
+            return (
+              <div className="rotatingCard mx-2 my-4">
+                <div className="cardFace cardFront">
+                  <img src={invitado.photo}></img>
+                  <div className="cardFrontText">
+                    <h3>{invitado.name}</h3>
+                    <p className="mb-2">{invitado.position}</p>
+                  </div>
+                </div>
+                <div className="cardFace cardBack">
+                  <h3> {invitado.name}</h3>
+                  <p>{invitado.description}</p>
+                  <div className="cardLink d-flex justify-content-center my-3">
+                    <Link
+                      to={"/entrevistas/" + invitado.id + "/" + invitado.name}
+                    >
+                      <button className="callToAction" role="button">
+                        Mas Info
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
           })}
-          </div>
         </div>
-{/* End of Card 1 */}
+      </div>
+      {/* End of Card 1 */}
     </>
   );
 };
