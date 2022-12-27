@@ -110,24 +110,17 @@ export const Home = () => {
                   rhoncus. Morbi porta, ante at fermentum ullamcorper, lectus
                   nisl dapibus nibh, a rutrum ipsum magna vel orci. Vestibulum
                   condimentum facilisis lorem, ac ornare mi lacinia quis. Fusce
-                  sodales turpis sed leo gravida, ac viverra nulla sodales.
-                  Fusce in varius dui. Donec iaculis, ipsum placerat scelerisque
-                  volutpat, lacus elit luctus dolor, sed tempus orci nunc et
-                  nunc. Mauris facilisis lobortis lacus hendrerit porta.
                   <br></br>
                   <br></br>
                   Pellentesque habitant morbi tristique senectus et netus et
                   malesuada fames ac turpis egestas. Vestibulum suscipit, massa
                   at congue ornare, arcu orci venenatis augue, vitae auctor
                   tortor ipsum a tortor. Nullam egestas risus non erat finibus,
-                  non gravida eros scelerisque. Ut eros ante, vestibulum vitae
-                  suscipit sodales, elementum vitae purus. Curabitur id
-                  tincidunt lacus. Maecenas non magna lorem. Ut accumsan id odio
-                  vel iaculis. Donec non euismod sem, vel semper ipsum.
+                  non gravida eros scelerisque.
                 </p>
               </div>
-              <div className="col-md-5 mx-auto">
-                <img src={superman} className="imgSobremi"></img>
+              <div className="col-md-5">
+                <img src={superman} className="superman"></img>
               </div>
             </div>
           </div>

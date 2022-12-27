@@ -10,8 +10,9 @@ export const Interview = () => {
       <>
         <section>
           <div className="container profileContainer">
+          <h3 className="text-center my-5">Entrevistas</h3>
             <div className="box">
-              <p className="h-dash">Entrevistas</p>
+              <p className=" ms-5">Consulta las entrevistas que hemos hecho hasta el momento</p>
               <div className="row bg-light"></div>
               <Card2/>
             </div>

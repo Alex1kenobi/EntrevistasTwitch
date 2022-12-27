@@ -121,8 +121,14 @@
     font-size: 2vw;
   }
   
+  .superman{
+    width: 100%;
+    border-radius: 25px;
+    margin: 1vh 0vw;
+  }
+  
   .imgSobremi{
-    height: 35vw;
+    width: 80%;
     border-radius: 25px;
     margin: 1vh 0vw;
   }

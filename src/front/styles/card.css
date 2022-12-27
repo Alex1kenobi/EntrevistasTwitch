@@ -48,7 +48,7 @@
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  box-shadow: 0 5px 10px #000;
+  box-shadow: 0 5px 10px #3452FF;
 }
 
 .rotatingCard .cardBack .cardLink{ 

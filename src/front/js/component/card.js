@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 export const Card = () => {
   return (
     <>
+{/* Card 1 */}
       <div className="rotatingCard mx-2 my-2">
         <div className="cardFace cardFront">
           <img src={people1}></img>
@@ -26,10 +27,77 @@ export const Card = () => {
             Maecenas ut mollis tellus. Maecenas dapibus.
           </p>
           <div className="cardLink">
-            <Link to="#">More Info</Link>
+            <Link to="#">Mas Info</Link>
           </div>
         </div>
       </div>
+{/* End of Card 1 */}
+{/* Card 2 */}
+<div className="rotatingCard mx-2 my-2">
+        <div className="cardFace cardFront">
+          <img src={people2}></img>
+          <div className="cardFrontText">
+            <h3>Jessica Biel</h3>
+            <p className="mb-2">Actress</p>
+          </div>
+        </div>
+        <div className="cardFace cardBack">
+          <h3>Jessica Biel</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+            vitae dapibus turpis. Sed ut odio vitae nulla placerat rhoncus.
+            Maecenas ut mollis tellus. Maecenas dapibus.
+          </p>
+          <div className="cardLink">
+            <Link to="#">Mas Info</Link>
+          </div>
+        </div>
+      </div>
+{/* End of Card 2 */}
+{/* Card 3 */}
+<div className="rotatingCard mx-2 my-2">
+        <div className="cardFace cardFront">
+          <img src={people3}></img>
+          <div className="cardFrontText">
+            <h3>Rafael Rowe</h3>
+            <p className="mb-2">Documentalist</p>
+          </div>
+        </div>
+        <div className="cardFace cardBack">
+          <h3>Rafael Rowe</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+            vitae dapibus turpis. Sed ut odio vitae nulla placerat rhoncus.
+            Maecenas ut mollis tellus. Maecenas dapibus.
+          </p>
+          <div className="cardLink">
+            <Link to="#">Mas Info</Link>
+          </div>
+        </div>
+      </div>
+{/* End of Card 3 */}
+{/* Card 4 */}
+<div className="rotatingCard mx-2 my-2">
+        <div className="cardFace cardFront">
+          <img src={people4}></img>
+          <div className="cardFrontText">
+            <h3>Nina Adams</h3>
+            <p className="mb-2">Primary teacher</p>
+          </div>
+        </div>
+        <div className="cardFace cardBack">
+          <h3>Nina Adams</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+            vitae dapibus turpis. Sed ut odio vitae nulla placerat rhoncus.
+            Maecenas ut mollis tellus. Maecenas dapibus.
+          </p>
+          <div className="cardLink">
+            <Link to="#">Mas Info</Link>
+          </div>
+        </div>
+      </div>
+{/* End of Card 4 */}
     </>
   );
 };
