@@ -18,6 +18,7 @@ export const Card2 = () => {
           return (
             <div className="col-12 col-sm-6 col-lg-3 mt-5 mx-2">
               <div
+              
                 className="single_advisor_profile wow fadeInUp"
                 data-wow-delay="0.2s"
                 style={{
