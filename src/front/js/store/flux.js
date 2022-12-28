@@ -350,11 +350,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }),
 			});
 			const data = await resp.json();
-  /*           setStore({
-			  user: data.user,
-			  message: data.message,
-			}); */
-			// don't forget to return something, that is how the async resolves
+ 
+			getActions().getEntrevistado(data.Question.interviewer_id) //esto lo que hace es actualizar la tabla en tiempo real
+			
 		  } catch (error) {
 			console.log("Error loading message from backend", error);
 		  }
@@ -375,11 +373,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }),
 			});
 			const data = await resp.json();
-  /*           setStore({
-			  user: data.user,
-			  message: data.message,
-			}); */
-			// don't forget to return something, that is how the async resolves
+
+			getActions().getEntrevistado(data.Question.interviewer_id) //esto lo que hace es actualizar la tabla en tiempo real
+
+
 		  } catch (error) {
 			console.log("Error loading message from backend", error);
 		  }
