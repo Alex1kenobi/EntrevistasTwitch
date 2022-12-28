@@ -19,7 +19,7 @@ setPreguntas (store.preguntas_current_user)
 console.log(store.preguntas_current_user)
   return (
     <div class="padding">
-      <div class="row container d-flex justify-content-center">
+      <div class="container d-flex justify-content-center">
         <div class="col grid-margin stretch-card">
           <div class="card">
             <div class="card-body">

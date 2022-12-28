@@ -51,16 +51,6 @@
   box-shadow: 0 5px 10px #3452FF;
 }
 
-/* .rotatingCard .cardBack .cardLink{ 
-  border-top: solid 1px #f3f3f3;
-  height: 50px;
-  line-height: 50px;
-} */
-
-/* .rotatingCard .cardBack .cardLink a{
-  color: #f3f3f3; 
-} */
-
 .rotatingCard .cardBack h3{
   font-size: 30px;
   margin-top: 20px;
@@ -78,14 +68,6 @@
 .rotatingCard:hover .cardBack{
   transform: perspective(600px) rotateY(360deg);
 }
-
-/* .rotatingCard .cardBack .cardLink:hover {
-  font-size: larger;
-  transition: 0.2s;
-  border-top: solid 1px #3452FF;
-  height: 55px;
-  line-height: 55px;
-} */
 
 
 
