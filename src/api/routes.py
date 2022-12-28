@@ -139,18 +139,10 @@ def deletequestion():
   
     user_id = get_jwt_identity ()
     body_question_id = request.json.get("id")
-    
     getquestion = Question.query.get(body_question_id)
-    
-    
     if getquestion:
-
         db.session.delete(getquestion)
-
         db.session.commit() #esto es para subirlo a la base de datos
-        
-   
-    
         return jsonify ({"message": "Pregunta eliminada"}), 200
     else: 
         return jsonify ({"message": "Pregunta no eliminada"}), 400
@@ -217,21 +209,6 @@ def dislike():
     else:
         return jsonify({"Dislike": False, "Message": "Falta ID de pregunta"}), 400
 
-
-
-    #     if user not in question.dislikes:
-    #         question.dislikes.append (user)
-    #         db.session.commit()
-    #         return jsonify ({"Liked":False, "Dislike": True, "Troll": False}), 200
-    #     else:
-    #         question.dislikes = list(filter(lambda x:x.id != user.id, question.dislikes))
-    #         db.session.commit(),
-    #         return jsonify({"Dislike": False, "Message": "ya le ha dado dislike"}), 400
-    # else:
-    #     return jsonify({"Dislike": False, "Message": "Falta ID de pregunta"}), 400
-
-
-
 @api.route('/trolls', methods=['POST'])
 @jwt_required()
 def trolls():
@@ -269,27 +246,6 @@ def trolls():
         return jsonify({"Troll": False, "Message": "Falta ID de pregunta"}), 400
 
 
-
-
-
-
-
-
-
-
-
-    #     if user not in question.trolls:
-    #         question.trolls.append (user)
-    #         db.session.commit()
-    #         return jsonify ({"Liked":False, "Dislike": False, "Troll": True}), 200
-    #     else:
-    #         question.trolls = list(filter(lambda x:x.id != user.id, question.trolls))
-    #         db.session.commit(),
-    #         return jsonify({"Troll": False, "Message": "ya le ha dado troll"}), 400
-    # else:
-    #     return jsonify({"Troll": False, "Message": "Falta ID de pregunta"}), 400
-
-
 @api.route('/getpreguntas', methods=['GET'])
 @jwt_required()
 def getpreguntas():
@@ -324,8 +280,6 @@ def reject():
         return jsonify ({"message":"Pregunta rechazada", "Question": question.serialize()}), 200
     else:
         return jsonify ({"message":"Pregunta no encontrada", }), 400
-
-
 
 @api.route('/filtercategory/<int:id>', methods=['GET'])
 @jwt_required()

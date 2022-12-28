@@ -85,6 +85,8 @@ class Question(db.Model):
             "category": category.name,
             "user": user.username,
             "user_id": user.id,
+            "done": self.done,
+            "reject": self.reject,
         }
 
 class Interviewer(db.Model):
