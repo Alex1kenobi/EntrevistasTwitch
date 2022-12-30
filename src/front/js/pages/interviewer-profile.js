@@ -226,8 +226,9 @@ export const InterviewerProfile = () => {
 
           <div className="needs-validation">
             <div htmlFor="validationCustom04" className="form-label">
+              <label>Filtra las preguntas por categoría</label>
               <select
-                className="form-select"
+                className="form-select bg-dark text-info"
                 aria-label="Floating label select example"
                 id="validationCustom04"
                 required
