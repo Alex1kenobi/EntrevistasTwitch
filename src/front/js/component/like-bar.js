@@ -102,7 +102,45 @@ export const Likebar = (props) => {
             ) : null}
           </div>
         ) : null}
-        {store.user.rol ==1 && props.indexPregunta.reject || props.indexPregunta.done ? ( // primero condicionar por rol, después por done o reject//
+        
+        {store.user.rol == 1 ? (
+  store.user.rol ==1 && props.indexPregunta.reject || props.indexPregunta.done ? ( // primero condicionar por rol, después por done o reject//
+    <button
+      onClick={() => {
+        actions.done(props.indexPregunta.id, false);
+        actions.reject(props.indexPregunta.id, false);
+      }}
+    >
+      Deshacer
+    </button>
+  ) : (
+    <>
+      {" "}
+      <button
+        onClick={() => {
+          actions.done(props.indexPregunta.id, true);
+        }}
+      >
+        Hecho
+      </button>
+      <button
+        onClick={() => {
+          actions.reject(props.indexPregunta.id, true);
+        }}
+      >
+        Rechazar
+      </button>
+    </>
+  )
+) : null}
+
+
+
+
+
+
+
+        {/* {store.user.rol ==1 && props.indexPregunta.reject || props.indexPregunta.done ? ( // primero condicionar por rol, después por done o reject//
           <button
             onClick={() => {
               actions.done(props.indexPregunta.id, false);
@@ -129,7 +167,7 @@ export const Likebar = (props) => {
               Rechazar
             </button>
           </>
-        ) : null}
+        ) : null} */}
       </div>
     </div>
   );
