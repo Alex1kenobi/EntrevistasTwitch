@@ -9,11 +9,11 @@ export const Interview = () => {
     return (
       <>
         <section>
-          <div className="container profileContainer">
+          <div className="container profileContainer text-center">
             <div className="box">
-              <h3 className="h-dash text-center">Entrevistas</h3>
+            <h2 className="my-5">Próximas Entrevistas</h2>
               <p className="ms-5">
-                Consulta las entrevistas que hemos hecho hasta el momento
+                Apúntate o pregunta cosas bonitas a las próximas entrevistas del magestuoso shrek
               </p>
               <Card2 />
             </div>
@@ -23,8 +23,10 @@ export const Interview = () => {
         <section className="">
           <div className="container text-center">
             <div className="homeSection flex-column">
-              <h2 className="my-5">Próximas Entrevistas</h2>
-
+              <h2 className="my-5">Entrevistas pasadas</h2>
+              <p className="ms-5">
+                Consulta las entrevistas que hemos hecho hasta el momento
+              </p>
               <div className="d-flex align-items-center justify-content-center mb-5 flex-wrap">
                 <Card />
               </div>

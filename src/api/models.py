@@ -43,8 +43,6 @@ class Rol(db.Model):
     name = db.Column(db.String(120), unique=True, nullable=False)
     user = db.relationship('User', backref='rol', lazy=True)
 
-    
-
     def __repr__(self):
         return f'<Rol {self.name}>'
 
@@ -52,7 +50,6 @@ class Rol(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-
    }
 
 class Question(db.Model):
@@ -97,6 +94,8 @@ class Interviewer(db.Model):
     position = db.Column(db.String(100), nullable=False)
     photo = db.Column(db.String(300), nullable=False)
     description = db.Column(db.String(2000), nullable=True)
+    date = db.Column(db.Date, nullable=False)
+    hour = db.Column(db.Time, nullable=True)
 
     def __repr__(self):
         return f'<Interviewer {self.name}>'
@@ -110,6 +109,8 @@ class Interviewer(db.Model):
             "questions": list(map(lambda questions:questions.serialize(),self.questions)), #todo este chorizo para verlo como un array
             "photo": self.photo,
             "description": self.description,
+            "date": self.date,
+            "hour": self.hour,
         }
 
 class Category(db.Model):
