@@ -1,118 +1,60 @@
-import React from "react";
+import React, {useContext} from "react";
 import "../../styles/card.css";
-import people1 from "../../../../docs/assets/cards/people1.jpg";
-import people2 from "../../../../docs/assets/cards/people2.jpg";
-import people3 from "../../../../docs/assets/cards/people3.jpg";
-import people4 from "../../../../docs/assets/cards/people4.jpg";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Card = () => {
+  const {store, actions} = useContext (Context)
+
+  let yourDate = new Date();
+
+  let pasadasEntrevistas = store.entrevistados.filter(function (a) {
+    const dateObject = new Date(Date.parse(a.date));
+    const isoDate = dateObject.toLocaleDateString();
+    console.log(isoDate, "Isodate");
+
+    if (isoDate < yourDate.toLocaleDateString().split("T")[0]) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     <>
       {/* Card 1 */}
       <div className="rotatingCard mx-2 my-2">
-        <div className="cardFace cardFront">
-          <img src={people1}></img>
-          <div className="cardFrontText">
-            <h3>Michael Libri</h3>
-            <p className="mb-2">Content Creator</p>
-          </div>
-        </div>
-        <div className="cardFace cardBack">
-          <h3> Michael Libri</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            vitae dapibus turpis. Sed ut odio vitae nulla placerat rhoncus.
-            Maecenas ut mollis tellus. Maecenas dapibus.
-          </p>
-          <div className="cardLink d-flex justify-content-center my-3">
-            <Link to="">
-              <button className="callToAction" role="button">
-                Mas Info
-              </button>
-            </Link>
-          </div>
-        </div>
+        {pasadasEntrevistas.map((invitado) => {
+          let dayinvitado = new Date(Date.parse(invitado.date));
+          let isoInvitadoDate = dayinvitado.toLocaleDateString();
+          return (
+            <>
+              <div className="cardFace cardFront">
+                <img src={invitado.photo}></img>
+                <div className="cardFrontText">
+                  <h3>{invitado.name}</h3>
+                  <p className="mb-2">{invitado.position}</p>
+                </div>
+              </div>
+              <div className="cardFace cardBack">
+                <h3> {invitado.name}</h3>
+                <p>{invitado.description}</p>
+                <p>{isoInvitadoDate}</p>
+                <p>{invitado.hour.slice(0, 5)}</p>
+                <div className="cardLink d-flex justify-content-center my-3">
+                  <Link
+                    to={"/entrevistas/" + invitado.id + "/" + invitado.name}
+                  >
+                    <button className="callToAction" role="button">
+                      Mas Info
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </>
+          );
+        })}
       </div>
       {/* End of Card 1 */}
-      {/* Card 2 */}
-      <div className="rotatingCard mx-2 my-2">
-        <div className="cardFace cardFront">
-          <img src={people2}></img>
-          <div className="cardFrontText">
-            <h3>Jessica Biel</h3>
-            <p className="mb-2">Actress</p>
-          </div>
-        </div>
-        <div className="cardFace cardBack">
-          <h3>Jessica Biel</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            vitae dapibus turpis. Sed ut odio vitae nulla placerat rhoncus.
-            Maecenas ut mollis tellus. Maecenas dapibus.
-          </p>
-          <div className="cardLink d-flex justify-content-center my-3">
-            <Link to="">
-              <button className="callToAction" role="button">
-                Mas Info
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
-      {/* End of Card 2 */}
-      {/* Card 3 */}
-      <div className="rotatingCard mx-2 my-2">
-        <div className="cardFace cardFront">
-          <img src={people3}></img>
-          <div className="cardFrontText">
-            <h3>Rafael Rowe</h3>
-            <p className="mb-2">Documentalist</p>
-          </div>
-        </div>
-        <div className="cardFace cardBack">
-          <h3>Rafael Rowe</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            vitae dapibus turpis. Sed ut odio vitae nulla placerat rhoncus.
-            Maecenas ut mollis tellus. Maecenas dapibus.
-          </p>
-          <div className="cardLink d-flex justify-content-center my-3">
-            <Link to="">
-              <button className="callToAction" role="button">
-                Mas Info
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
-      {/* End of Card 3 */}
-      {/* Card 4 */}
-      <div className="rotatingCard mx-2 my-2">
-        <div className="cardFace cardFront">
-          <img src={people4}></img>
-          <div className="cardFrontText">
-            <h3>Nina Adams</h3>
-            <p className="mb-2">Primary teacher</p>
-          </div>
-        </div>
-        <div className="cardFace cardBack">
-          <h3>Nina Adams</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            vitae dapibus turpis. Sed ut odio vitae nulla placerat rhoncus.
-            Maecenas ut mollis tellus. Maecenas dapibus.
-          </p>
-          <div className="cardLink d-flex justify-content-center my-3">
-            <Link to="">
-              <button className="callToAction" role="button">
-                Mas Info
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
-      {/* End of Card 4 */}
     </>
   );
 };

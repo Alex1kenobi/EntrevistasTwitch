@@ -28,7 +28,7 @@ export const Likebar = (props) => {
           <p class="card-text">{props.indexPregunta.text}</p>
           <p class="card-text">{props.indexPregunta.category}</p>
         </>
-        {store.logged ? (
+        {store.logged && !props.indexPregunta.done && !props.indexPregunta.reject ? (
           <div class="input-group">
             {}
             <button
@@ -101,12 +101,13 @@ export const Likebar = (props) => {
             ) : null}
           </div>
         ) : null}
+        
         {store.user.rol == 1 ? (
-          !done ? (
+          !props.indexPregunta.done ? (
             <button
               onClick={() => {
                 actions.done(props.indexPregunta.id, true);
-                setDone(true);
+                
               }}
             >
               Hecho
@@ -115,7 +116,7 @@ export const Likebar = (props) => {
             <button
               onClick={() => {
                 actions.done(props.indexPregunta.id, false);
-                setDone(false);
+                
               }}
             >
               Deshacer
@@ -124,7 +125,7 @@ export const Likebar = (props) => {
         ) : null}
 
 {store.user.rol == 1 ? (
-!reject ? (
+!props.indexPregunta.reject ? (
             <button
               onClick={() => {
                 actions.reject(props.indexPregunta.id, true);
