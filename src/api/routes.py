@@ -139,18 +139,10 @@ def deletequestion():
   
     user_id = get_jwt_identity ()
     body_question_id = request.json.get("id")
-    
     getquestion = Question.query.get(body_question_id)
-    
-    
     if getquestion:
-
         db.session.delete(getquestion)
-
         db.session.commit() #esto es para subirlo a la base de datos
-        
-   
-    
         return jsonify ({"message": "Pregunta eliminada"}), 200
     else: 
         return jsonify ({"message": "Pregunta no eliminada"}), 400
@@ -160,22 +152,29 @@ def deletequestion():
 @jwt_required()
 def likes():
     user_id = request.json.get("user_id")
-    print ("@@@@@user_id", user_id)
     body_question_id = request.json.get("id")   
-    print ("@@@@@body_question_id", body_question_id)
     user = User.query.get (user_id)
-    print ("@@@@@user", user)
     if body_question_id:
         question = Question.query.get(body_question_id)
-        print ("@@@@@question", question)
-        if user not in question.likes:
+        
+        if user not in question.likes and user not in question.dislikes and user not in question.trolls:
             question.likes.append (user)
             db.session.commit()
             return jsonify ({"Liked":True, "Dislike": False, "Troll": False}), 200
-        else:
+        elif user in question.likes:
             question.likes = list(filter(lambda x:x.id != user.id, question.likes))
             db.session.commit(),
             return jsonify({"Liked": False, "Message": "ya le ha dado like"}), 400
+        elif user in question.dislikes:
+            question.dislikes = list(filter(lambda x:x.id != user.id, question.dislikes))
+            question.likes.append (user)
+            db.session.commit(),
+            return jsonify({"Liked": False, "Message": "ya le ha dado dislike"}), 400
+        elif user in question.trolls:
+            question.trolls = list(filter(lambda x:x.id != user.id, question.trolls))
+            question.likes.append (user)
+            db.session.commit(),
+            return jsonify({"Liked": False, "Message": "ya le ha dado troll"}), 400
     else:
         return jsonify({"Liked": False, "Message": "Falta ID de pregunta"}), 400
 
@@ -184,47 +183,65 @@ def likes():
 @jwt_required()
 def dislike():
     user_id = request.json.get("user_id")
-    print ("@@@@@user_id", user_id)
     body_question_id = request.json.get("id")   
-    print ("@@@@@body_question_id", body_question_id)
     user = User.query.get (user_id)
-    print ("@@@@@user", user)
     if body_question_id:
         question = Question.query.get(body_question_id)
-        print ("@@@@@question", question)
-        if user not in question.dislikes:
+
+        if user not in question.likes and user not in question.dislikes and user not in question.trolls:
             question.dislikes.append (user)
             db.session.commit()
             return jsonify ({"Liked":False, "Dislike": True, "Troll": False}), 200
-        else:
+        elif user in question.dislikes:
             question.dislikes = list(filter(lambda x:x.id != user.id, question.dislikes))
             db.session.commit(),
-            return jsonify({"Dislike": False, "Message": "ya le ha dado dislike"}), 400
+            return jsonify({"Dislike": False, "Message": "ya le ha dado dislike, restamos like"}), 400
+        elif user in question.likes:
+            question.likes = list(filter(lambda x:x.id != user.id, question.likes))
+            question.dislikes.append (user)
+            db.session.commit(),
+            return jsonify({"Liked": False, "Dislike": True, "Message": "ya le ha dado like, añadimos dislike"}), 400
+        elif user in question.trolls:
+            question.trolls = list(filter(lambda x:x.id != user.id, question.trolls))
+            question.dislikes.append (user)
+            db.session.commit(),
+            return jsonify({"Troll": False, "Dislike": True, "Message": "ya le ha dado troll, añadimos dislike"}), 400
     else:
         return jsonify({"Dislike": False, "Message": "Falta ID de pregunta"}), 400
-
-
 
 @api.route('/trolls', methods=['POST'])
 @jwt_required()
 def trolls():
     user_id = request.json.get("user_id")
-    print ("@@@@@user_id", user_id)
     body_question_id = request.json.get("id")   
-    print ("@@@@@body_question_id", body_question_id)
     user = User.query.get (user_id)
-    print ("@@@@@user", user)
+    
     if body_question_id:
         question = Question.query.get(body_question_id)
-        print ("@@@@@question", question)
-        if user not in question.trolls:
+        
+        if len(question.trolls) == 9:
+            question.reject = True
+            db.session.commit(),
+            return jsonify ({"Message": "Mensaje eliminado"})
+
+        if user not in question.likes and user not in question.dislikes and user not in question.trolls:
             question.trolls.append (user)
             db.session.commit()
             return jsonify ({"Liked":False, "Dislike": False, "Troll": True}), 200
-        else:
+        elif user in question.trolls:
             question.trolls = list(filter(lambda x:x.id != user.id, question.trolls))
             db.session.commit(),
-            return jsonify({"Troll": False, "Message": "ya le ha dado troll"}), 400
+            return jsonify({"Dislike": False, "Message": "ya le ha dado troll, restamos troll"}), 400
+        elif user in question.likes:
+            question.likes = list(filter(lambda x:x.id != user.id, question.likes))
+            question.trolls.append (user)
+            db.session.commit(),
+            return jsonify({"Liked": False, "Dislike": True, "Message": "ya le ha dado like, añadimos troll"}), 400
+        elif user in question.dislikes:
+            question.dislikes = list(filter(lambda x:x.id != user.id, question.dislikes))
+            question.trolls.append (user)
+            db.session.commit(),
+            return jsonify({"Troll": False, "Dislike": True, "Message": "ya le ha dado dislike, añadimos troll"}), 400
     else:
         return jsonify({"Troll": False, "Message": "Falta ID de pregunta"}), 400
 
@@ -264,11 +281,10 @@ def reject():
     else:
         return jsonify ({"message":"Pregunta no encontrada", }), 400
 
-
-
 @api.route('/filtercategory/<int:id>', methods=['GET'])
 @jwt_required()
 def filtercategory(id):
     preguntas = Question.query.filter_by(category_id = id).all()
     #return jsonify ({"Question": preguntas.serialize()}), 200
     return jsonify ({"filterCategory": list(map(lambda x:x.serialize(), preguntas))}), 200
+

@@ -13,7 +13,7 @@ export const QuestionTable = () => {
 
   useEffect (()=>{
 setPreguntas (store.preguntas_current_user)
-}, [store.preguntas_current_user])
+}, [store.preguntas_current_user]) //este es el use effect para actualizar la tabla en tiempo real
 
 
 console.log(store.preguntas_current_user)

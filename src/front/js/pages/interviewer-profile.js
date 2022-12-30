@@ -7,12 +7,14 @@ import "../../styles/interviewer-profile.css";
 import { Likebar } from "../component/like-bar";
 
 export const InterviewerProfile = () => {
-  const { store, actions } = useContext(Context);
+  const {store, actions} = useContext(Context);
   const [text, setText] = useState("");
 
   const [selectcategory, setSelectcategory] = useState("");
   const [filtercategory, setFiltercategory] = useState("");
 
+  // const [Done, setDone] = useState("");
+  // const [Reject, setReject] = useState("");
 
   const [mensaje, setMensaje] = useState("");
 
@@ -20,52 +22,65 @@ export const InterviewerProfile = () => {
 
   const handleClick = () => {
     // 👇️ toggle
-    setIsActive(current => !current);
+    setIsActive((current) => !current);
   };
 
   let { id } = useParams();
 
   useEffect(() => {
     actions.getEntrevistado(id);
-    actions.getcategories()
+    actions.getcategories();
   }, []);
 
-var ordenLikes 
 
-if (filtercategory == "") {
+  var ordenLikes;
 
-  ordenLikes = store.preguntas_entrevistado.sort(function(a, b) {
-    if ((a.likes.length-a.dislikes.length) < (b.likes.length-b.dislikes.length)) {
-      return 1;
-    }
-    if ((a.likes.length-a.dislikes.length) > (b.likes.length-b.dislikes.length)) {
-      return -1;
-    }
-    return 0;
-  });
-  
-} else {
-  ordenLikes = store.filterCategory.sort(function(a, b) {
-    if ((a.likes.length-a.dislikes.length) < (b.likes.length-b.dislikes.length)) {
-      return 1;
-    }
-    if ((a.likes.length-a.dislikes.length) > (b.likes.length-b.dislikes.length)) {
-      return -1;
-    }
-    return 0;
-  });
-}
-
- 
+  if (filtercategory == "") {
+    ordenLikes = store.preguntas_entrevistado.sort(function (a, b) {
+      if (
+        a.likes.length - a.dislikes.length <
+        b.likes.length - b.dislikes.length
+      ) {
+        return 1;
+      }
+      if (
+        a.likes.length - a.dislikes.length >
+        b.likes.length - b.dislikes.length
+      ) {
+        return -1;
+      }
+      return 0;
+    });
+  } else {
+    ordenLikes = store.filterCategory.sort(function (a, b) {
+      if (
+        a.likes.length - a.dislikes.length <
+        b.likes.length - b.dislikes.length
+      ) {
+        return 1;
+      }
+      if (
+        a.likes.length - a.dislikes.length >
+        b.likes.length - b.dislikes.length
+      ) {
+        return -1;
+      }
+      return 0;
+    });
+  }
 
   const handleQuestion = async () => {
-    await actions.preguntas(store.entrevistado.id, text, selectcategory,store.user.id);
+    await actions.preguntas(
+      store.entrevistado.id,
+      text,
+      selectcategory,
+      store.user.id
+    );
     if (selectcategory && text) {
       setText("");
       setSelectcategory("");
     }
     setMensaje(store.message_response);
-
   };
 
   return (
@@ -238,22 +253,67 @@ if (filtercategory == "") {
               <label htmlFor="floatingSelect"></label>
             </div>
 
-            <div>
-              {ordenLikes.length > 0 ? (
-                ordenLikes.map((indexPregunta) => {
-                  return (
-                    <div className="card-group">
-                      <Likebar indexPregunta={indexPregunta} />
-                    </div>
-                  );
-                })
-              ) : (
-                <p>Escribe tu pregunta</p>
-              )}
+                  <div>
+                  <h1>PREGUNTAS PENDIENTES</h1>
+                    {ordenLikes.length > 0 ? (
+                      ordenLikes.map((indexPregunta) => {
+                        console.log(indexPregunta);
+
+                        if (
+                          indexPregunta.done == false &&
+                          indexPregunta.reject == false
+                        ) {
+                          return (
+                            <div className="card-group">
+                              <Likebar indexPregunta={indexPregunta} />
+                            </div>
+                          );
+                        }
+                      })
+                    ) : (
+                      <p>Escribe tu pregunta</p>
+                    )}
+                  </div>
+                  <div></div>
+
+                  <div>
+                    <h1>PREGUNTAS REALIZADAS</h1>
+                    {ordenLikes.length > 0
+                      ? ordenLikes.map((indexPregunta) => {
+                          if (
+                            indexPregunta.done == true &&
+                            indexPregunta.reject == false
+                          ) {
+                            return (
+                              <div className="card-group">
+                                <Likebar indexPregunta={indexPregunta} />
+                              </div>
+                            );
+                          }
+                        })
+                      : null}
+                  </div>
+
+                  <div>
+                    <h1>PREGUNTAS RECHAZADAS</h1>
+                    {ordenLikes.length > 0
+                      ? ordenLikes.map((indexPregunta) => {
+                          if (
+                            indexPregunta.done == false &&
+                            indexPregunta.reject == true
+                          ) {
+                            return (
+                              <div className="card-group">
+                                <Likebar indexPregunta={indexPregunta} />
+                              </div>
+                            );
+                          }
+                        })
+                      : null}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
   );
 };
