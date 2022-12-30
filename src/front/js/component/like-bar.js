@@ -10,7 +10,6 @@ export const Likebar = (props) => {
 
   const [reject, setReject] = useState(false);
 
-  
   const handleClick = () => {
     // 👇️ toggle
     setIsActive((current) => !current);
@@ -28,7 +27,9 @@ export const Likebar = (props) => {
           <p class="card-text">{props.indexPregunta.text}</p>
           <p class="card-text">{props.indexPregunta.category}</p>
         </>
-        {store.logged && !props.indexPregunta.done && !props.indexPregunta.reject ? (
+        {store.logged &&
+        !props.indexPregunta.done &&
+        !props.indexPregunta.reject ? (
           <div class="input-group">
             {}
             <button
@@ -101,51 +102,34 @@ export const Likebar = (props) => {
             ) : null}
           </div>
         ) : null}
-        
-        {store.user.rol == 1 ? (
-          !props.indexPregunta.done ? (
+        {store.user.rol ==1 && props.indexPregunta.reject || props.indexPregunta.done ? ( // primero condicionar por rol, después por done o reject//
+          <button
+            onClick={() => {
+              actions.done(props.indexPregunta.id, false);
+              actions.reject(props.indexPregunta.id, false);
+            }}
+          >
+            Deshacer
+          </button>
+        ) : store.user.rol == 1 ? (
+          <>
+            {" "}
             <button
               onClick={() => {
                 actions.done(props.indexPregunta.id, true);
-                
               }}
             >
               Hecho
             </button>
-          ) : (
-            <button
-              onClick={() => {
-                actions.done(props.indexPregunta.id, false);
-                
-              }}
-            >
-              Deshacer
-            </button>
-          )
-        ) : null}
-
-{store.user.rol == 1 ? (
-!props.indexPregunta.reject ? (
             <button
               onClick={() => {
                 actions.reject(props.indexPregunta.id, true);
-                setReject(true);
               }}
             >
               Rechazar
             </button>
-          ) : (
-            <button
-              onClick={() => {
-                actions.reject(props.indexPregunta.id, false);
-                setReject(false);
-              }}
-            >
-              Deshacer
-            </button>
-          )
+          </>
         ) : null}
-
       </div>
     </div>
   );
