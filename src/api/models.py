@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime, timedelta
+import time
 
 db = SQLAlchemy()
 
@@ -110,7 +112,7 @@ class Interviewer(db.Model):
             "photo": self.photo,
             "description": self.description,
             "date": self.date,
-            "hour": self.hour,
+            "hour": str(self.hour),
         }
 
 class Category(db.Model):
