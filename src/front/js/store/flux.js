@@ -116,6 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  }
 		},
   
+	
 		getEntrevistado: async (id) => {
 		  try {
 			// fetching data from the backend
