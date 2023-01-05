@@ -25,6 +25,12 @@ export const Login = () => {
     } catch (error) {}
   };
 
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      loginNavigate(user)
+    }
+  };
+
   const verificarPasswords = (user) => {
     // Verificamos si las constraseñas no coinciden
     if (user.password != password2) {
@@ -99,6 +105,7 @@ export const Login = () => {
                                     password: e.target.value,
                                   });
                                 }}
+                                onKeyDown = {handleKeyDown}
                                 name="logpass"
                                 className="form-style"
                                 placeholder="Tu contraseña"
@@ -171,6 +178,8 @@ export const Login = () => {
                                 onChange={(e) =>
                                   setUser({ ...user, password: e.target.value })
                                 }
+                                
+                               
                               />
                               <i className="input-icon fas fa-key"></i>
                             </div>
@@ -183,6 +192,7 @@ export const Login = () => {
                                 id="pass2"
                                 autoComplete="off"
                                 onChange={(e) => setPassword2(e.target.value)}
+                                onKeyDown = {handleKeyDown}
                               />
                               <i className="input-icon fas fa-key"></i>
                             </div>
