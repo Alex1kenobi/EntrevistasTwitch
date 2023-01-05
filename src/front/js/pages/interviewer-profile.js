@@ -7,7 +7,7 @@ import "../../styles/interviewer-profile.css";
 import { Likebar } from "../component/like-bar";
 
 export const InterviewerProfile = () => {
-  const {  store, actions  } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const [text, setText] = useState("");
 
   const [selectcategory, setSelectcategory] = useState("");
@@ -257,31 +257,31 @@ export const InterviewerProfile = () => {
                 <label htmlFor="floatingSelect"></label>
               </div>
 
-            <h1 className="h-dash mb-3">PREGUNTAS PENDIENTES</h1>
-            <div className="d-flex flex-wrap">
-              {ordenLikes.length > 0 ? (
-                ordenLikes.map((indexPregunta) => {
-                  console.log(indexPregunta);
+              <h1 className="h-dash mb-3">PREGUNTAS PENDIENTES</h1>
+              <div className="d-flex flex-wrap">
+                {ordenLikes.length > 0 ? (
+                  ordenLikes.map((indexPregunta) => {
+                    console.log(indexPregunta);
 
-                        if (
-                          indexPregunta.done == false &&
-                          indexPregunta.reject == false
-                        ) {
-                          return (
-                            <div className="card-group px-3 m-2">
-                              <Likebar indexPregunta={indexPregunta} />
-                            </div>
-                          );
-                        }
-                      })
-                    ) : (
-                      <p>Escribe tu pregunta</p>
-                    )}
-                  </div>
-                  <div className="d-flex justify-content-around mt-5">
-              <div className="">
-                <h1 className="h-dash mb-3">PREGUNTAS REALIZADAS</h1>
-                <div className="d-flex flex-wrap border-end doneQuestions">
+                    if (
+                      indexPregunta.done == false &&
+                      indexPregunta.reject == false
+                    ) {
+                      return (
+                        <div className="card-group px-3 m-2">
+                          <Likebar indexPregunta={indexPregunta} />
+                        </div>
+                      );
+                    }
+                  })
+                ) : (
+                  <p>Escribe tu pregunta</p>
+                )}
+              </div>
+              <div className="d-flex justify-content-around mt-5">
+                <div>
+                  <h1 className="h-dash mb-3">PREGUNTAS REALIZADAS</h1>
+                  <div className="d-flex flex-wrap border-end doneQuestions">
                     {ordenLikes.length > 0
                       ? ordenLikes.map((indexPregunta) => {
                           if (
@@ -297,31 +297,34 @@ export const InterviewerProfile = () => {
                         })
                       : null}
                   </div>
+                  </div>
 
                   <div>
-                  <h1 className="h-dash mb-3">PREGUNTAS RECHAZADAS</h1>
-                  <div className=" doneQuestions d-flex flex-wrap border-start">
-                    {ordenLikes.length > 0
-                      ? ordenLikes.map((indexPregunta) => {
-                          if (
-                            indexPregunta.done == false &&
-                            indexPregunta.reject == true
-                          ) {
-                            return (
-                              <div className="card-group px-3 m-2">
-                                <Likebar indexPregunta={indexPregunta} />
-                              </div>
-                            );
-                          }
-                        })
-                      : null}
+                    <h1 className="h-dash mb-3">PREGUNTAS RECHAZADAS</h1>
+                    <div className=" doneQuestions d-flex flex-wrap border-start">
+                      {ordenLikes.length > 0
+                        ? ordenLikes.map((indexPregunta) => {
+                            if (
+                              indexPregunta.done == false &&
+                              indexPregunta.reject == true
+                            ) {
+                              return (
+                                <div className="card-group px-3 m-2">
+                                  <Likebar indexPregunta={indexPregunta} />
+                                </div>
+                              );
+                            }
+                          })
+                        : null}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            ) : (<p> Inicia sesión para hacer una pregunta </p>)}
-          </div>
-          </div>
-          </div>
+          ) : (
+            <p> Inicia sesión para hacer una pregunta </p>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };

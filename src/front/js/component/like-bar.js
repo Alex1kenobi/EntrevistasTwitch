@@ -88,7 +88,7 @@ export const Likebar = (props) => {
               <button
                 type="button"
                 style={{
-                  color: dislike ? "#3452FF" : "",
+                  color: dislike ? "#FF1053" : "",
                 }}
                 class="questionButton fas fa-thumbs-down"
                 onClick={() => {
@@ -108,9 +108,9 @@ export const Likebar = (props) => {
                 <button
                   type="button"
                   style={{
-                    color: troll ? "#3452FF" : "",
+                    color: troll ? "red" : "",
                   }}
-                  class="trollAndDeleteButton fas fa-eye-slash text-warning"
+                  class="trollAndDeleteButton fas fa-solid fa-ban"
                   onClick={() => {
                     actions.Trolls(
                       props.indexPregunta.id,

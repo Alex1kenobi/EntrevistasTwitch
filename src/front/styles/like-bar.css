@@ -27,6 +27,11 @@
     border: none;
     font-size: 1rem;
   }
+
+  /* .trollAndDeleteButton:active {
+    font-size: 1.5rem;
+    transition: 0.3s;
+  } */
   
   .popover__wrapper {
     position: relative;
