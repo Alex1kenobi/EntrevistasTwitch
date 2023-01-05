@@ -36,9 +36,6 @@
   /* CSS */
   .callToAction {
     all: unset;
-    width: 12vw;
-    height: 1.75vw;
-    font-size: 1vw;
     background: transparent;
     border: none;
     position: relative;
@@ -53,6 +50,21 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+  }
+
+  @media (max-width: 1800px) {
+    .callToAction {
+      width: 12vw;
+      height: 1.5vw;
+      font-size: 1vw;
+    }
+  }
+  @media (min-width: 1800px) {
+    .callToAction {
+      width: 8vw;
+      height: 0.75vw;
+      font-size: 0.75vw;
+    }
   }
   
   .callToAction::after,
