@@ -55,7 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  logged: data.logged,
 			  user: data.user,
 			});
-  
+			console.log (data)
 			// don't forget to return something, that is how the async resolves
 		  } catch (error) {
 			console.log("Error loading message from backend", error);
