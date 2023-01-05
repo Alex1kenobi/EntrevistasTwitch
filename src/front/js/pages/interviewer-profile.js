@@ -7,7 +7,7 @@ import "../../styles/interviewer-profile.css";
 import { Likebar } from "../component/like-bar";
 
 export const InterviewerProfile = () => {
-  const { store, actions } = useContext(Context);
+  const {  store, actions  } = useContext(Context);
   const [text, setText] = useState("");
 
   const [selectcategory, setSelectcategory] = useState("");
@@ -226,36 +226,36 @@ export const InterviewerProfile = () => {
               )}
             </div>
           </div>
-
-          <div className="needs-validation">
-            <div htmlFor="validationCustom04" className="form-label">
-              <label>Filtra las preguntas por categoría</label>
-              <select
-                className="form-select bg-dark text-info"
-                aria-label="Floating label select example"
-                id="validationCustom04"
-                required
-                value={filtercategory}
-                onChange={(e) => {
-                  setFiltercategory(e.target.value);
-                }}
-                onClick={() => {
-                  actions.filterCategory(filtercategory);
-                }}
-              >
-                <option selected value="">
-                  Ver todas las preguntas
-                </option>
-                {store.categories.map((category) => {
-                  return (
-                    <>
-                      <option value={category.id}>{category.name}</option>
-                    </>
-                  );
-                })}
-              </select>
-              <label htmlFor="floatingSelect"></label>
-            </div>
+          {store.logged ? (
+            <div className="needs-validation">
+              <div htmlFor="validationCustom04" className="form-label">
+                <label>Filtra las preguntas por categoría</label>
+                <select
+                  className="form-select bg-dark text-info"
+                  aria-label="Floating label select example"
+                  id="validationCustom04"
+                  required
+                  value={filtercategory}
+                  onChange={(e) => {
+                    setFiltercategory(e.target.value);
+                  }}
+                  onClick={() => {
+                    actions.filterCategory(filtercategory);
+                  }}
+                >
+                  <option selected value="">
+                    Ver todas las preguntas
+                  </option>
+                  {store.categories.map((category) => {
+                    return (
+                      <>
+                        <option value={category.id}>{category.name}</option>
+                      </>
+                    );
+                  })}
+                </select>
+                <label htmlFor="floatingSelect"></label>
+              </div>
 
             <h1 className="h-dash mb-3">PREGUNTAS PENDIENTES</h1>
             <div className="d-flex flex-wrap">
@@ -263,30 +263,8 @@ export const InterviewerProfile = () => {
                 ordenLikes.map((indexPregunta) => {
                   console.log(indexPregunta);
 
-                  if (
-                    indexPregunta.done == false &&
-                    indexPregunta.reject == false
-                  ) {
-                    return (
-                      <div className="card-group px-3 m-2">
-                        <Likebar indexPregunta={indexPregunta} />
-                      </div>
-                    );
-                  }
-                })
-              ) : (
-                <p>Escribe tu pregunta</p>
-              )}
-            </div>
-
-            <div className="d-flex justify-content-around mt-5">
-              <div className="">
-                <h1 className="h-dash mb-3">PREGUNTAS REALIZADAS</h1>
-                <div className="d-flex flex-wrap border-end doneQuestions">
-                  {ordenLikes.length > 0
-                    ? ordenLikes.map((indexPregunta) => {
                         if (
-                          indexPregunta.done == true &&
+                          indexPregunta.done == false &&
                           indexPregunta.reject == false
                         ) {
                           return (
@@ -296,33 +274,54 @@ export const InterviewerProfile = () => {
                           );
                         }
                       })
-                    : null}
+                    ) : (
+                      <p>Escribe tu pregunta</p>
+                    )}
+                  </div>
+                  <div className="d-flex justify-content-around mt-5">
+              <div className="">
+                <h1 className="h-dash mb-3">PREGUNTAS REALIZADAS</h1>
+                <div className="d-flex flex-wrap border-end doneQuestions">
+                    {ordenLikes.length > 0
+                      ? ordenLikes.map((indexPregunta) => {
+                          if (
+                            indexPregunta.done == true &&
+                            indexPregunta.reject == false
+                          ) {
+                            return (
+                              <div className="card-group px-3 m-2">
+                                <Likebar indexPregunta={indexPregunta} />
+                              </div>
+                            );
+                          }
+                        })
+                      : null}
+                  </div>
+
+                  <div>
+                  <h1 className="h-dash mb-3">PREGUNTAS RECHAZADAS</h1>
+                  <div className=" doneQuestions d-flex flex-wrap border-start">
+                    {ordenLikes.length > 0
+                      ? ordenLikes.map((indexPregunta) => {
+                          if (
+                            indexPregunta.done == false &&
+                            indexPregunta.reject == true
+                          ) {
+                            return (
+                              <div className="card-group px-3 m-2">
+                                <Likebar indexPregunta={indexPregunta} />
+                              </div>
+                            );
+                          }
+                        })
+                      : null}
+                  </div>
                 </div>
               </div>
-
-              <div>
-              <h1 className="h-dash mb-3">PREGUNTAS RECHAZADAS</h1>
-              <div className=" doneQuestions d-flex flex-wrap border-start">
-                {ordenLikes.length > 0
-                  ? ordenLikes.map((indexPregunta) => {
-                      if (
-                        indexPregunta.done == false &&
-                        indexPregunta.reject == true
-                      ) {
-                        return (
-                          <div className="card-group px-3 m-2">
-                            <Likebar indexPregunta={indexPregunta} />
-                          </div>
-                        );
-                      }
-                    })
-                  : null}
-              </div>
-              </div>
             </div>
+            ) : (<p> Inicia sesión para hacer una pregunta </p>)}
           </div>
-        </div>
-      </div>
-    </div>
+          </div>
+          </div>
   );
 };
