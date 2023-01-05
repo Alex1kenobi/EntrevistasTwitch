@@ -101,7 +101,7 @@ def preguntas():
         db.session.commit()
         return jsonify ({"message":"Pregunta enviada", "question": question.serialize()}), 200
     else:
-        return jsonify({"message": "Campo obligatorio no rellenado"}), 400
+        return jsonify({"message": "Por favor selecciona una categoría de pregunta"}), 400
 
 @api.route('/category', methods=['GET'])
 def getcategory():

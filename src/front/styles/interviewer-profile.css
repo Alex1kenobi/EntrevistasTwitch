@@ -37,3 +37,7 @@
     background: rgba(0,0,0,.4);
     text-align: center;
   }
+
+  .doneQuestions{
+    min-width: 500px;
+  }

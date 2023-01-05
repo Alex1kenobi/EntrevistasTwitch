@@ -1,0 +1,70 @@
+.questionCard {
+    border: 1px;
+    border-radius: 10px;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-0.5 * var(--bs-gutter-x));
+    margin-left: calc(-0.5 * var(--bs-gutter-x));
+    max-width: 515px;
+  }
+
+  .questionButton{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .questionText{
+    padding: 0px;
+  }
+
+  .trollAndDeleteButton{
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .popover__wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: -120px;
+    top: 60px;
+    transform: translate(0, 10px);
+    background-color: white;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+    border-radius: 10px;
+  }
+  .popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    right: calc(20% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent white transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+  }
+  .popover__wrapper:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+  }
+  .popover__message {
+    color: black;
+    text-align: center;
+  }
