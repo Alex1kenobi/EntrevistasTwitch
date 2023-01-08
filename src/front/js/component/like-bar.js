@@ -44,33 +44,33 @@ export const Likebar = (props) => {
     props.indexPregunta.likes.length - props.indexPregunta.dislikes.length;
 
   return (
-    <div class="questionCard bg-dark px-3">
-      <div class="card-body">
-        <div class="border-bottom pb-3">
-          <h5 class="card-title h-dash">{props.indexPregunta.user}</h5>
-          <p class="card-text text-white">
-            <span class="text-info">Categoría:</span>{" "}
+    <div className="questionCard bg-dark px-3">
+      <div className="card-body">
+        <div className="border-bottom pb-3">
+          <h5 className="card-title h-dash">{props.indexPregunta.user}</h5>
+          <p className="card-text text-white">
+            <span className="text-info">Categoría:</span>{" "}
             {props.indexPregunta.category}
           </p>
-          <h6 class="card-text text-white">
-            <span class="text-info questionText">Pregunta:</span> {props.indexPregunta.text}
+          <h6 className="card-text text-white">
+            <span className="text-info questionText">Pregunta:</span> {props.indexPregunta.text}
           </h6>
         </div>
 
-        <p class="card-text text-white mt-3">
-          <span class="text-info">Total de likes:</span> {recuento}
+        <p className="card-text text-white mt-3">
+          <span className="text-info">Total de likes:</span> {recuento}
         </p>
         {store.logged &&
         !props.indexPregunta.done &&
         !props.indexPregunta.reject ? (
-          <div class="d-flex justify-content-between">
-            <div class="likes">
+          <div className="d-flex justify-content-between">
+            <div className="likes">
               <button
                 type="button"
                 style={{
                   color: like ? "#3452FF" : "",
                 }}
-                class="fas fa-thumbs-up questionButton"
+                className="fas fa-thumbs-up questionButton"
                 onClick={() => {
                   actions.Likes(
                     props.indexPregunta.id,
@@ -90,7 +90,7 @@ export const Likebar = (props) => {
                 style={{
                   color: dislike ? "#FF1053" : "",
                 }}
-                class="questionButton fas fa-thumbs-down"
+                className="questionButton fas fa-thumbs-down"
                 onClick={() => {
                   actions.Dislikes(
                     props.indexPregunta.id,
@@ -103,14 +103,14 @@ export const Likebar = (props) => {
               ></button>
               {/* {props.indexPregunta.dislikes.length} */}
             </div>
-            <div class="trollAndDelete">
-              <div class="popover__wrapper">
+            <div className="trollAndDelete">
+              <div className="popover__wrapper">
                 <button
                   type="button"
                   style={{
                     color: troll ? "red" : "",
                   }}
-                  class="trollAndDeleteButton fas fa-solid fa-ban"
+                  className="trollAndDeleteButton fas fa-solid fa-ban"
                   onClick={() => {
                     actions.Trolls(
                       props.indexPregunta.id,
@@ -121,8 +121,8 @@ export const Likebar = (props) => {
                   }}
                   /* disabled={disabledTroll} */
                 ></button>
-                <div class="popover__content">
-                  <p class="popover__message">
+                <div className="popover__content">
+                  <p className="popover__message">
                     Presiona este botón si consideras que esta pregunta es
                     troll, abusiva o viola las reglas de la comunidad
                   </p>
@@ -132,7 +132,7 @@ export const Likebar = (props) => {
 
               {store.user.id == props.indexPregunta.user_id ? (
                 <button
-                  class="trollAndDeleteButton fa-solid fa-trash text-danger"
+                  className="trollAndDeleteButton fa-solid fa-trash text-danger"
                   onClick={() => {
                     actions.deletequestion(
                       props.indexPregunta.id,
@@ -149,6 +149,7 @@ export const Likebar = (props) => {
           (store.user.rol == 1 && props.indexPregunta.reject) ||
           props.indexPregunta.done ? ( // primero condicionar por rol, después por done o reject//
             <button
+              className="button-3 button-3deshacer mx-1 mt-4"
               onClick={() => {
                 actions.done(props.indexPregunta.id, false);
                 actions.reject(props.indexPregunta.id, false);
@@ -159,6 +160,7 @@ export const Likebar = (props) => {
           ) : (
             <>
               <button
+                className="button-3 button-3hecho mx-1 mt-4"
                 onClick={() => {
                   actions.done(props.indexPregunta.id, true);
                 }}
@@ -166,6 +168,7 @@ export const Likebar = (props) => {
                 Hecho
               </button>
               <button
+                className="button-3 button-3rechazar mx-1 mt-4"
                 onClick={() => {
                   actions.reject(props.indexPregunta.id, true);
                 }}

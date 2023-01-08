@@ -38,6 +38,34 @@
     text-align: center;
   }
 
-  /* .doneQuestions{
-    min-width: 500px;
-  } */
+  .preguntasPendientes{
+    background-color: rgba(26,106,137,0.7);
+  }
+  .preguntasPendientesbox{
+    background-color: rgba(26,106,137,0.3);
+  }
+  .preguntasRealizadas{
+    background-color: rgba(50,117,47,0.5);
+  }
+  .preguntasRealizadasbox{
+    background-color: rgba(50,117,47,0.2);
+  }
+  .preguntasRechazadas{
+    background-color: rgba(140,24,26,0.5);
+  }
+  .preguntasRechazadasbox{
+    background-color: rgba(140,24,26,0.2);
+  }
+
+  @media (max-width: 800px) {
+    .doneQuestions{
+      max-width: 80vw;
+    }
+  
+  }
+  @media (min-width: 800px) {
+    .doneQuestions{
+      max-width: 38vw;
+    }
+  
+  }

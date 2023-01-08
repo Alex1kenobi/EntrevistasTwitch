@@ -27,11 +27,15 @@
     border: none;
     font-size: 1rem;
   }
+  
+  .fa-ban:hover {
+    color: #fcbe03;
+    font-size: larger; 
+  }
 
-  /* .trollAndDeleteButton:active {
-    font-size: 1.5rem;
-    transition: 0.3s;
-  } */
+  .fa-ban:visited , .trollAndDeleteButton:hover {
+    font-size: larger;
+  }
   
   .popover__wrapper {
     position: relative;
@@ -73,3 +77,77 @@
     color: black;
     text-align: center;
   }
+
+/* Hecho y rechazar CSS */
+.button-3 {
+  appearance: none;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-3hecho {
+  background-color: #2ea44f;
+}
+
+.button-3rechazar{
+  background-color: #EA4C89;
+}
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3hecho:hover {
+  background-color: #2c974b;
+}
+
+.button-3hecho:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3hecho:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3hecho:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+
+.button-3rechazar:hover,
+.button-3rechazar:focus {
+  background-color: #F082AC;
+}
+
+.button-3deshacer{
+  background-color: rgb(26,106,137);
+}
+
+.button-3deshacer:hover,
+.button-3deshacer:focus {
+  background-color: rgb(17,66,85);
+}

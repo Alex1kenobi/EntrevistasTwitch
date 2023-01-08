@@ -256,9 +256,10 @@ export const InterviewerProfile = () => {
                 </select>
                 <label htmlFor="floatingSelect"></label>
               </div>
-
-              <h1 className="h-dash mb-3">PREGUNTAS PENDIENTES</h1>
-              <div className="d-flex flex-wrap">
+              <div className="preguntasPendientes p-2 rounded text-center">
+                <h1 className="h-dash">PREGUNTAS PENDIENTES</h1>
+              </div>
+              <div className="d-flex preguntasPendientesbox rounded m-2">
                 {ordenLikes.length > 0 ? (
                   ordenLikes.map((indexPregunta) => {
                     console.log(indexPregunta);
@@ -278,10 +279,12 @@ export const InterviewerProfile = () => {
                   <p>Escribe tu pregunta</p>
                 )}
               </div>
-              <div className="d-flex justify-content-around mt-5">
+              <div className="d-flex justify-content-around mt-5 flex-wrap">
                 <div>
-                  <h1 className="h-dash mb-3">PREGUNTAS REALIZADAS</h1>
-                  <div className="d-flex flex-wrap border-end doneQuestions">
+                  <div className="preguntasRealizadas px-4 py-2 rounded text-center m-1">
+                    <h1 className="h-dash">PREGUNTAS REALIZADAS</h1>
+                  </div>
+                  <div className="d-flex flex-wrap doneQuestions preguntasRealizadasbox m-1 rounded">
                     {ordenLikes.length > 0
                       ? ordenLikes.map((indexPregunta) => {
                           if (
@@ -297,29 +300,31 @@ export const InterviewerProfile = () => {
                         })
                       : null}
                   </div>
-                  </div>
+                </div>
 
-                  <div>
-                    <h1 className="h-dash mb-3">PREGUNTAS RECHAZADAS</h1>
-                    <div className=" doneQuestions d-flex flex-wrap border-start">
-                      {ordenLikes.length > 0
-                        ? ordenLikes.map((indexPregunta) => {
-                            if (
-                              indexPregunta.done == false &&
-                              indexPregunta.reject == true
-                            ) {
-                              return (
-                                <div className="card-group px-3 m-2">
-                                  <Likebar indexPregunta={indexPregunta} />
-                                </div>
-                              );
-                            }
-                          })
-                        : null}
-                    </div>
+                <div>
+                  <div className="preguntasRechazadas px-4 py-2 rounded text-center m-1">
+                    <h1 className="h-dash">PREGUNTAS RECHAZADAS</h1>
+                  </div>
+                  <div className=" doneQuestions d-flex flex-wrap preguntasRechazadasbox rounded m-1">
+                    {ordenLikes.length > 0
+                      ? ordenLikes.map((indexPregunta) => {
+                          if (
+                            indexPregunta.done == false &&
+                            indexPregunta.reject == true
+                          ) {
+                            return (
+                              <div className="card-group px-3 m-2">
+                                <Likebar indexPregunta={indexPregunta} />
+                              </div>
+                            );
+                          }
+                        })
+                      : null}
                   </div>
                 </div>
               </div>
+            </div>
           ) : (
             <p> Inicia sesión para hacer una pregunta </p>
           )}
