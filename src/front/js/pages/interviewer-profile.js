@@ -259,7 +259,7 @@ export const InterviewerProfile = () => {
               <div className="preguntasPendientes p-2 rounded text-center">
                 <h1 className="h-dash">PREGUNTAS PENDIENTES</h1>
               </div>
-              <div className="d-flex preguntasPendientesbox rounded m-2">
+              <div className="d-flex preguntasPendientesbox rounded m-2 flex-wrap">
                 {ordenLikes.length > 0 ? (
                   ordenLikes.map((indexPregunta) => {
                     console.log(indexPregunta);
