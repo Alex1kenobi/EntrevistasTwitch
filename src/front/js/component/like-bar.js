@@ -43,6 +43,29 @@ export const Likebar = (props) => {
   const recuento =
     props.indexPregunta.likes.length - props.indexPregunta.dislikes.length;
 
+  var colorLike = false 
+  var colorDislike = false 
+
+
+  const cambioColorLike = () => {
+    props.indexPregunta.likes.filter((e) => {
+      if (e.id == store.user.id) {
+        colorLike=true;
+      }
+    });
+  };
+
+  const cambioColorDislike = () => {
+    props.indexPregunta.dislikes.filter((e) => {
+      if (e.id == store.user.id) {
+        colorDislike=true;
+      }
+    });
+  };
+
+  cambioColorDislike(); 
+  cambioColorLike();
+
   return (
     <div className="questionCard bg-dark px-3">
       <div className="card-body">
@@ -53,7 +76,8 @@ export const Likebar = (props) => {
             {props.indexPregunta.category}
           </p>
           <h6 className="card-text text-white">
-            <span className="text-info questionText">Pregunta:</span> {props.indexPregunta.text}
+            <span className="text-info questionText">Pregunta:</span>{" "}
+            {props.indexPregunta.text}
           </h6>
         </div>
 
@@ -68,16 +92,17 @@ export const Likebar = (props) => {
               <button
                 type="button"
                 style={{
-                  color: like ? "#3452FF" : "",
+                  color: colorLike ? "#3452FF" : "",
                 }}
                 className="fas fa-thumbs-up questionButton"
                 onClick={() => {
                   actions.Likes(
                     props.indexPregunta.id,
                     store.user.id,
-                    props.indexPregunta.interviewer_id
+                    props.indexPregunta.interviewer_id,
                   );
-                  handleLike(); /* Este hace que cambie el color...... Pero de todos! */
+                  handleLike();
+                  
                   /* handleClickLike(); */
                 }}
 
@@ -88,7 +113,7 @@ export const Likebar = (props) => {
               <button
                 type="button"
                 style={{
-                  color: dislike ? "#FF1053" : "",
+                  color: colorDislike ? "#FF1053" : "",
                 }}
                 className="questionButton fas fa-thumbs-down"
                 onClick={() => {
@@ -97,7 +122,8 @@ export const Likebar = (props) => {
                     store.user.id,
                     props.indexPregunta.interviewer_id
                   );
-                  handleDislike(); /* handleClickDislike(likes); */
+                  handleDislike();
+                  
                 }}
                 /* disabled={disabledDislike} */
               ></button>
