@@ -1,0 +1,38 @@
+.container-fluid {
+    margin: 0vh 15vw;
+    padding: 0%;
+  }
+  .navBar-top{
+    margin: 0vh 0vw;
+    position: absolute;
+    padding: 0%;
+  }
+  .navbar {
+    padding: 0%;
+  }
+  .navbar-background {
+    background-color: rgb(16,10,31);
+    width: 100vw;
+    transition: 3s;
+  }
+  .nav-link{
+    text-decoration: none;
+    color: white;
+    position: relative;
+    transition: 1s 20000s ;
+  }
+  .nav-link:hover{
+    text-decoration: none;
+    color: white;
+    top: -3px;
+    transition:0s 0s;
+  }
+  a:active{
+    text-decoration: none;
+    color: white;
+  }
+  
+  .burguerMenu{
+    color: white;
+    font-size: 1.5rem;
+  }

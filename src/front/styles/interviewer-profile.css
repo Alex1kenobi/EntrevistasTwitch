@@ -1,0 +1,71 @@
+.interviewCard{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    min-width: 300px;
+    width: 300px;
+    height: 400px;
+  }
+  
+  .interviewCard .interviewCardFace {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .interviewCard .interviewCardFront {
+    box-shadow: 0 5px 10px #000;
+  }
+  
+  .interviewCard .interviewCardFront img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .interviewCard .interviewCardText {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    color: white;
+    background: rgba(0,0,0,.4);
+    text-align: center;
+  }
+
+  .preguntasPendientes{
+    background-color: rgba(26,106,137,0.7);
+  }
+  .preguntasPendientesbox{
+    background-color: rgba(26,106,137,0.3);
+  }
+  .preguntasRealizadas{
+    background-color: rgba(50,117,47,0.5);
+  }
+  .preguntasRealizadasbox{
+    background-color: rgba(50,117,47,0.2);
+  }
+  .preguntasRechazadas{
+    background-color: rgba(140,24,26,0.5);
+  }
+  .preguntasRechazadasbox{
+    background-color: rgba(140,24,26,0.2);
+  }
+
+  @media (max-width: 800px) {
+    .doneQuestions{
+      max-width: 80vw;
+    }
+  
+  }
+  @media (min-width: 800px) {
+    .doneQuestions{
+      max-width: 38vw;
+    }
+  
+  }
