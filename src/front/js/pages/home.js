@@ -88,7 +88,7 @@ export const Home = () => {
               <h2 className="my-5">Próximas Entrevistas</h2>
 
               <div className="d-flex align-items-center justify-content-center mb-5 flex-wrap">
-                <Card />
+                <Card2 />
               </div>
             </div>
           </div>
